@@ -1,0 +1,84 @@
+#include <SoftwareSerial.h>
+SoftwareSerial mySerial(6, 7); // RX, TX pins for HC-05
+
+void setup()
+{
+  
+  Serial.begin(9600);
+  mySerial.begin(9600);
+  pinMode(12, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(9, OUTPUT);
+
+  digitalWrite(12, HIGH);
+  digitalWrite(11, HIGH);
+  digitalWrite(10, HIGH);
+  digitalWrite(9, HIGH);
+
+}
+
+void loop()
+{
+  if (mySerial.available() > 0)
+  {
+    char data = mySerial.read();
+     Serial.println(data);
+
+    
+    if (data == 'B') 
+    {
+      digitalWrite(12, HIGH);
+      
+    } 
+    else if (data == 'A')
+    {
+      digitalWrite(12, LOW);
+
+    }
+
+
+     else if (data == 'D')
+    {
+      
+      digitalWrite(11, HIGH);
+
+    }
+
+
+     else if (data == 'C')
+    {
+      
+      digitalWrite(11, LOW);
+
+    }
+
+         else if (data == 'F')
+    {
+
+      digitalWrite(10, HIGH);
+
+    }
+
+             else if (data == 'E')
+    {
+
+      digitalWrite(10, LOW);
+
+    }
+
+             else if (data == 'H')
+    {
+
+      digitalWrite(9, HIGH);
+
+    }
+
+             else if (data == 'G')
+    {
+
+      digitalWrite(9, LOW);
+
+    }
+  }
+}
